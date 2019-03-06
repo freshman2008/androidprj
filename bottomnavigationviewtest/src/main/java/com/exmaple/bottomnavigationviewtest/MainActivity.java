@@ -35,8 +35,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void initData() {
         //方法一：去掉多个item时的动画效果, 固定显示所有item(默认情况下, 当item数量超过3个时会有默认动画效果)
-        BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
-
+//        BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
+        //方法二：去掉多个item时的动画效果, 固定显示所有item(默认情况下, 当item数量超过3个时会有默认动画效果)
+        //在layout文件中BottomNavigationView的属性加入app:labelVisibilityMode="labeled"
+        //方法三：去掉多个item时的动画效果, 固定显示所有item(默认情况下, 当item数量超过3个时会有默认动画效果)
+        bottomNavigationView.setLabelVisibilityMode(1);
 
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(viewPagerAdapter);
