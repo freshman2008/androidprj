@@ -28,6 +28,11 @@ public class MainActivity extends AppCompatActivity {
         initData();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
     private void initView() {
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         viewPager = findViewById(R.id.view_pager);
@@ -72,7 +77,13 @@ public class MainActivity extends AppCompatActivity {
             }
             menuItem = bottomNavigationView.getMenu().getItem(position);
             menuItem.setChecked(true);
-            BottomNavigationViewHelper.addBadge(MainActivity.this, bottomNavigationView, 2, position, position);
+            if (position == 0) {
+                BottomNavigationViewHelper.showBadge(MainActivity.this, bottomNavigationView, 0, position, 9);
+            } else if (position == 1) {
+                BottomNavigationViewHelper.showBadge(MainActivity.this, bottomNavigationView, 1, position, position);
+            } else {
+                BottomNavigationViewHelper.showBadge(MainActivity.this, bottomNavigationView, 2, position, position);
+            }
 
         }
 

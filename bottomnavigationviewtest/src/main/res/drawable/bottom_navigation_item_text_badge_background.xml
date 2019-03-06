@@ -3,11 +3,11 @@
     android:shape="oval">
 
     <!--圆角-->
-    <corners android:radius="4dp" />
+    <corners android:radius="@dimen/design_bottom_navigation_badge_corners" />
 
     <size
-        android:width="16dp"
-        android:height="16dp" />
+        android:width="@dimen/design_bottom_navigation_badge_text_width"
+        android:height="@dimen/design_bottom_navigation_badge_text_height" />
 
     <!--填充-->
     <solid android:color="@color/colorAccent" />
