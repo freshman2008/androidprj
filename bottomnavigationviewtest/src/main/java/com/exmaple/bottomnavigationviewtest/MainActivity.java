@@ -34,8 +34,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        //去掉多个item时的动画效果, 固定显示所有item(默认情况下, 当item数量超过3个时会有默认动画效果)
+        //方法一：去掉多个item时的动画效果, 固定显示所有item(默认情况下, 当item数量超过3个时会有默认动画效果)
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
+
 
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(viewPagerAdapter);
@@ -68,7 +69,8 @@ public class MainActivity extends AppCompatActivity {
             }
             menuItem = bottomNavigationView.getMenu().getItem(position);
             menuItem.setChecked(true);
-            BottomNavigationViewHelper.addBadge(MainActivity.this, bottomNavigationView, position);
+            BottomNavigationViewHelper.addBadge(MainActivity.this, bottomNavigationView, 1, position, position);
+
         }
 
         @Override
