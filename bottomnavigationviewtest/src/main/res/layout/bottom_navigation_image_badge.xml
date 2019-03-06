@@ -4,17 +4,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
+    <ImageView
         android:id="@+id/badge_item_view"
         android:layout_width="15dp"
         android:layout_height="15dp"
         android:layout_gravity="center"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/bottom_navigation_item_text_badge_background"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="6dp"
+        android:src="@mipmap/img_badge"
         android:gravity="center"
-        android:textColor="@color/white"
-        android:textSize="10sp"
         android:visibility="gone" />
 
 </LinearLayout>

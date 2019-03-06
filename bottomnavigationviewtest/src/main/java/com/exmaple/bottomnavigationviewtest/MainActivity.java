@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
             }
             menuItem = bottomNavigationView.getMenu().getItem(position);
             menuItem.setChecked(true);
-            BottomNavigationViewHelper.addBadge(MainActivity.this, bottomNavigationView, 1, position, position);
+            BottomNavigationViewHelper.addBadge(MainActivity.this, bottomNavigationView, 2, position, position);
 
         }
 

@@ -7,6 +7,7 @@ import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 @SuppressLint("RestrictedApi")
@@ -36,19 +37,28 @@ public class BottomNavigationViewHelper {
             View badge = LayoutInflater.from(context).inflate(R.layout.bottom_navigation_item_badge, menuView, false);
             //添加到Tab上
             itemView.addView(badge);
-            TextView textView = badge.findViewById(R.id.tv_msg_count);
-            textView.setText(String.valueOf(count));
+            TextView badgeView = badge.findViewById(R.id.badge_item_view);
+            badgeView.setText(String.valueOf(count));
             //无消息时可以将它隐藏即可
-            textView.setVisibility(View.VISIBLE);
-        } else {
+            badgeView.setVisibility(View.VISIBLE);
+        } else if (type == 1) {
             //加载我们的角标View，新创建的一个布局
             View badge = LayoutInflater.from(context).inflate(R.layout.bottom_navigation_dot_image_badge, menuView, false);
             //添加到Tab上
             itemView.addView(badge);
-            TextView textView = badge.findViewById(R.id.tv_msg_count);
-//            textView.setText(String.valueOf(count));
+            TextView badgeView = badge.findViewById(R.id.badge_item_view);
             //无消息时可以将它隐藏即可
-            textView.setVisibility(View.VISIBLE);
+            badgeView.setVisibility(View.VISIBLE);
+        } else {
+            //加载我们的角标View，新创建的一个布局
+            View badge = LayoutInflater.from(context).inflate(R.layout.bottom_navigation_image_badge, menuView, false);
+            //添加到Tab上
+            itemView.addView(badge);
+            ImageView badgeView = badge.findViewById(R.id.badge_item_view);
+//            badgeView.setImageResource();
+
+            //无消息时可以将它隐藏即可
+            badgeView.setVisibility(View.VISIBLE);
         }
     }
 }
