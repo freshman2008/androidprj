@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+
+    <!--圆角-->
+    <corners android:radius="@dimen/design_bottom_navigation_badge_corners" />
+
+    <size
+        android:width="@dimen/design_bottom_navigation_badge_text_width2"
+        android:height="@dimen/design_bottom_navigation_badge_text_height" />
+
+    <!--填充-->
+    <solid android:color="@color/colorAccent" />
+
+</shape>

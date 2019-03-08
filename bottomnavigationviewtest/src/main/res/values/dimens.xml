@@ -7,6 +7,8 @@
     <dimen name="design_bottom_navigation_badge_dot_image_width">8dp</dimen>
     <dimen name="design_bottom_navigation_badge_dot_image_height">8dp</dimen>
     <dimen name="design_bottom_navigation_badge_text_width">16dp</dimen>
+    <dimen name="design_bottom_navigation_badge_text_width1">20dp</dimen>
+    <dimen name="design_bottom_navigation_badge_text_width2">25dp</dimen>
     <dimen name="design_bottom_navigation_badge_text_height">16dp</dimen>
 
     <!--<dimen name="design_bottom_navigation_height">100dp</dimen>-->

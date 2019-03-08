@@ -2,6 +2,8 @@ package com.exmaple.bottomnavigationviewtest;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
@@ -50,12 +52,26 @@ public class BottomNavigationViewHelper {
             lp.gravity = Gravity.RIGHT;
 
             if (type == 0) {
+                View badge = itemView.findViewById(R.id.badge_view);
+                if (badge != null) {
+                    itemView.removeView(badge);
+                }
                 //加载我们的角标View，新创建的一个布局
-                View badge = LayoutInflater.from(context).inflate(R.layout.bottom_navigation_text_badge, menuView, false);
-                itemView.removeView(badge);
+                badge = LayoutInflater.from(context).inflate(R.layout.bottom_navigation_text_badge, menuView, false);
                 itemView.addView(badge, lp);
                 TextView badgeView = badge.findViewById(R.id.badge_item_view);
                 badgeView.setText(String.valueOf(count));
+                if (count >= 10 && count < 100) {
+                    badgeView.setWidth(20);
+                    badgeView.setBackgroundResource(R.drawable.bottom_navigation_item_text_badge_background1);
+                } else if (count >= 100) {
+                    badgeView.setWidth(40);
+                    badgeView.setText("99+");
+                    badgeView.setSingleLine();
+//                    GradientDrawable drawable = (GradientDrawable) badgeView.getBackground();
+//                    drawable.setSize(40, 16);
+                    badgeView.setBackgroundResource(R.drawable.bottom_navigation_item_text_badge_background2);
+                }
                 //无消息时可以将它隐藏即可
                 badgeView.setVisibility(View.VISIBLE);
             } else if (type == 1) {

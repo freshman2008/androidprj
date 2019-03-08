@@ -78,11 +78,11 @@ public class MainActivity extends AppCompatActivity {
             menuItem = bottomNavigationView.getMenu().getItem(position);
             menuItem.setChecked(true);
             if (position == 0) {
-                BottomNavigationViewHelper.showBadge(MainActivity.this, bottomNavigationView, 0, position, 9);
+                BottomNavigationViewHelper.showBadge(MainActivity.this, bottomNavigationView, 0, position, 22);
             } else if (position == 1) {
-                BottomNavigationViewHelper.showBadge(MainActivity.this, bottomNavigationView, 1, position, position);
+                BottomNavigationViewHelper.showBadge(MainActivity.this, bottomNavigationView, 0, position, 2);
             } else {
-                BottomNavigationViewHelper.showBadge(MainActivity.this, bottomNavigationView, 2, position, position);
+                BottomNavigationViewHelper.showBadge(MainActivity.this, bottomNavigationView, 0, position, 111);
             }
 
         }
