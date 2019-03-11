@@ -6,8 +6,10 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -17,7 +19,9 @@ import java.util.List;
 
 public class ListViewActivity extends AppCompatActivity implements View.OnClickListener {
     private RecyclerView mRecyclerView;
-    private LinearLayoutManager mLayoutManager;
+    private LinearLayoutManager mLinearLayoutManager;
+    private GridLayoutManager mGirdLayoutManager;
+    private StaggeredGridLayoutManager mStaggeredGirdLayoutManager;
     private MyAdapter mAdapter;
     private List<String> mDataList;
     private Context mContext;
@@ -59,10 +63,15 @@ public class ListViewActivity extends AppCompatActivity implements View.OnClickL
         mRecyclerView.setHasFixedSize(true);
 
         //2.设置布局方式
-        mLayoutManager = new LinearLayoutManager(this);
-        mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(this,LinearLayoutManager.VERTICAL));
+        mLinearLayoutManager = new LinearLayoutManager(this);
+        mLinearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        // use a linear layout manager
+        mGirdLayoutManager = new GridLayoutManager(this, 3);
+        mStaggeredGirdLayoutManager = new StaggeredGridLayoutManager(4, StaggeredGridLayoutManager.VERTICAL);
+        mRecyclerView.setLayoutManager(mStaggeredGirdLayoutManager/*mGirdLayoutManager*//*mLinearLayoutManager*/);
+
+//        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         if(mAdapter == null) {
             mAdapter = new MyAdapter(mContext, mDataList);
         }
