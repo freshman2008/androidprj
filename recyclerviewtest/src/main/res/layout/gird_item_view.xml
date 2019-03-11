@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginLeft="10dp">
+
+    <ImageView
+        android:id="@+id/item_icon"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/icon1" />
+
+    <TextView
+        android:id="@+id/item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RecyclerView使用教程示例"
+        android:layout_below="@id/item_icon"
+        android:layout_marginTop="3dp"/>
+
+    <TextView
+        android:id="@+id/item_datetime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2019-03010 16:08:16"
+        android:layout_above="@id/item_title"
+        android:visibility="invisible"/>
+
+    <ImageView
+        android:id="@+id/item_bookmark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="fitEnd"
+        android:src="@mipmap/unbookmark"
+        android:visibility="invisible"/>
+
+</RelativeLayout>

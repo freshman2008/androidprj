@@ -40,6 +40,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
                 break;
             case R.id.btn_gird_view:
+                Intent intent1 = new Intent(MainActivity.this, GirdViewActivity.class);
+                startActivity(intent1);
                 break;
             case R.id.btn_staggered_view:
                 break;

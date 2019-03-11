@@ -19,12 +19,10 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListViewActivity extends AppCompatActivity implements View.OnClickListener {
+public class GirdViewActivity extends AppCompatActivity implements View.OnClickListener {
     private RecyclerView mRecyclerView;
-    private LinearLayoutManager mLinearLayoutManager;
     private GridLayoutManager mGirdLayoutManager;
-    private StaggeredGridLayoutManager mStaggeredGirdLayoutManager;
-    private MyAdapter mAdapter;
+    private MyGirdViewAdapter mAdapter;
     private List<MyItem> mDataList;
     private Context mContext;
     private Button addBtn;
@@ -38,22 +36,10 @@ public class ListViewActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler_view);
 
-        this.mContext = ListViewActivity.this;
+        this.mContext = GirdViewActivity.this;
         initData();
         initView();
         initListener();
-        mHandler = new Handler() {
-            @Override
-            public void handleMessage(Message msg) {
-                super.handleMessage(msg);
-                if (msg.what == 1) {
-                    mDataList.get(pos).setTitle("pos:" + pos + ", ddd:" + ddd);
-                    mAdapter.notifyItemChanged(pos);
-                    ddd++;
-                    mHandler.sendEmptyMessageDelayed(1, 1000);
-                }
-            }
-        };
     }
 
     private void initView() {
@@ -65,17 +51,14 @@ public class ListViewActivity extends AppCompatActivity implements View.OnClickL
         mRecyclerView.setHasFixedSize(true);
 
         //2.设置布局方式
-        mLinearLayoutManager = new LinearLayoutManager(this);
-        mLinearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         // use a linear layout manager
         mGirdLayoutManager = new GridLayoutManager(this, 3);
-        mStaggeredGirdLayoutManager = new StaggeredGridLayoutManager(4, StaggeredGridLayoutManager.VERTICAL);
-        mRecyclerView.setLayoutManager(mLinearLayoutManager/*mStaggeredGirdLayoutManager*//*mGirdLayoutManager*//*mLinearLayoutManager*/);
+        mRecyclerView.setLayoutManager(mGirdLayoutManager);
 
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+//        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
 //        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         if(mAdapter == null) {
-            mAdapter = new MyAdapter(mContext, mDataList);
+            mAdapter = new MyGirdViewAdapter(mContext, mDataList);
         }
         mAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
@@ -162,18 +145,6 @@ public class ListViewActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.add_item:
-                MyItem item = new MyItem();
-                item.setTitle("内容 - " + (mDataList.size()+1));
-//                mAdapter.notifyDataSetChanged();
-                mAdapter.notifyItemInserted(mDataList.size()-1);
-                mRecyclerView.scrollToPosition(mDataList.size()-1);
-                break;
-            case R.id.del_item:
-                pos = mDataList.size() - 3;
-                mHandler.sendEmptyMessageDelayed(1, 1000);
-                break;
-        }
+
     }
 }

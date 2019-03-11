@@ -1,20 +1,16 @@
 package com.exmaple.recyclerviewtest;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.provider.ContactsContract;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
+public class MyGirdViewAdapter extends RecyclerView.Adapter<MyGirdViewAdapter.ViewHolder> {
     private List<MyItem> mDataList;
     private Context mContext;
     private OnItemClickListener mOnItemClickListener;
@@ -38,14 +34,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         }
     }
 
-    public MyAdapter(Context context, List<MyItem> mDataList) {
+    public MyGirdViewAdapter(Context context, List<MyItem> mDataList) {
         this.mContext = context;
         this.mDataList = mDataList;
     }
 
     @Override
-    public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_view, parent,false);
+    public MyGirdViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.gird_item_view, parent,false);
         return new ViewHolder(view);
     }
 
