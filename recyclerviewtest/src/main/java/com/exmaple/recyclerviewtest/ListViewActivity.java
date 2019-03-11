@@ -1,5 +1,6 @@
 package com.exmaple.recyclerviewtest;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -9,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +20,7 @@ public class ListViewActivity extends AppCompatActivity implements View.OnClickL
     private LinearLayoutManager mLayoutManager;
     private MyAdapter mAdapter;
     private List<String> mDataList;
+    private Context mContext;
     private Button addBtn;
     private Button delBtn;
     private int ddd = 100;
@@ -29,6 +32,7 @@ public class ListViewActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler_view);
 
+        this.mContext = ListViewActivity.this;
         initData();
         initView();
         initListener();
@@ -60,8 +64,19 @@ public class ListViewActivity extends AppCompatActivity implements View.OnClickL
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(this,LinearLayoutManager.VERTICAL));
         if(mAdapter == null) {
-            mAdapter = new MyAdapter(mDataList);
+            mAdapter = new MyAdapter(mContext, mDataList);
         }
+        mAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Toast.makeText(mContext, "Activity Click on item " + position, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onItemLongClick(View view, int position) {
+                Toast.makeText(mContext, "Activity Long Click on item " + position, Toast.LENGTH_SHORT).show();
+            }
+        });
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setItemAnimator(null);//设置动画为null来解决闪烁问题
     }
