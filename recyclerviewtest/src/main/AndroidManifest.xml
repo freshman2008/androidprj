@@ -19,6 +19,9 @@
         <activity android:name=".ListViewActivity"
             android:screenOrientation="portrait">
         </activity>
+        <activity android:name=".GirdViewActivity"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>

@@ -1,10 +1,12 @@
 package com.exmaple.recyclerviewtest;
 
 import android.content.Context;
+import android.provider.ContactsContract;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,11 +22,17 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView mTextView;
+        public ImageView icon;
+        public TextView title;
+        public TextView datetime;
+        public ImageView bookmark;
 
         public ViewHolder(View v) {
             super(v);
-            mTextView = (TextView) v.findViewById(R.id.textView);
+            icon = (ImageView) v.findViewById(R.id.item_icon);
+            title = (TextView) v.findViewById(R.id.item_title);
+            datetime = (TextView) v.findViewById(R.id.item_datetime);
+            bookmark = (ImageView) v.findViewById(R.id.item_bookmark);
         }
     }
 
@@ -41,8 +49,15 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        TextView tv = holder.mTextView;
-        tv.setText(mDataList.get(position));
+        ImageView icon = holder.icon;
+        TextView title = holder.title;
+        TextView datetime = holder.datetime;
+        ImageView bookmark = holder.bookmark;
+//        icon(mDataList.get(position));
+//        title.setText("今天天气好晴朗");
+        datetime.setText("2019-09-11 10:12:36");
+//        tv.setText(mDataList.get(position));
+
         //在mTextView上设置listener的话，之后点击mTextView才能起作用，点击holder上的其他view不起作用
         //在holder.itemView上设置listener的话，之后点击整个item都起作用
         holder.itemView.setOnClickListener(new View.OnClickListener() {

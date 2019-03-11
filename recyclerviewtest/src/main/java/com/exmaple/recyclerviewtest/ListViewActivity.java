@@ -68,10 +68,10 @@ public class ListViewActivity extends AppCompatActivity implements View.OnClickL
         // use a linear layout manager
         mGirdLayoutManager = new GridLayoutManager(this, 3);
         mStaggeredGirdLayoutManager = new StaggeredGridLayoutManager(4, StaggeredGridLayoutManager.VERTICAL);
-        mRecyclerView.setLayoutManager(mStaggeredGirdLayoutManager/*mGirdLayoutManager*//*mLinearLayoutManager*/);
+        mRecyclerView.setLayoutManager(mLinearLayoutManager/*mStaggeredGirdLayoutManager*//*mGirdLayoutManager*//*mLinearLayoutManager*/);
 
-//        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+//        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         if(mAdapter == null) {
             mAdapter = new MyAdapter(mContext, mDataList);
         }
