@@ -21,12 +21,17 @@ public class RecyclerItemDecoration extends RecyclerView.ItemDecoration {
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
         super.getItemOffsets(outRect, view, parent, state);
-        outRect.bottom = itemSpace;
-        if (parent.getChildLayoutPosition(view)%itemNum == 0){  //parent.getChildLayoutPosition(view) 获取view的下标
+
+        int position = parent.getChildLayoutPosition(view);
+        if (position % itemNum == 0){  //parent.getChildLayoutPosition(view) 获取view的下标
             outRect.left = 0;
         } else {
             outRect.left = itemSpace;
         }
 
+        int count = parent.getAdapter().getItemCount();
+        if (position < (itemNum * ((count / itemNum) - 1))) {
+            outRect.bottom = itemSpace;
+        }
     }
 }

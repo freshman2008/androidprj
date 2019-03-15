@@ -2,11 +2,7 @@ package com.exmaple.recyclerviewtest3;
 
 import android.content.Context;
 import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.style.ImageSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

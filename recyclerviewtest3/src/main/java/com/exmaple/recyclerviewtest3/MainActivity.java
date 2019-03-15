@@ -19,7 +19,9 @@ public class MainActivity extends AppCompatActivity {
     private Context mContext;
     private List<String> picList;
     private List<Map<String, Object>> channelList;
+    private List<Map<String, Object>> channelList2;
     private List<MyItem> girlList;
+    private List<FliperItem> fliperItems;
     private List<String> normalLis;
 
     @Override
@@ -42,7 +44,9 @@ public class MainActivity extends AppCompatActivity {
 
         picList = MockDataUtils.getBannerData();
         channelList = MockDataUtils.getChannelData();
+        channelList2 = MockDataUtils.getChannelData2();
         girlList = MockDataUtils.getGirlData();
+        fliperItems = MockDataUtils.getFliperItemData();
     }
 
     private void initListener() {
@@ -57,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(this,LinearLayoutManager.VERTICAL));
         if(mAdapter == null) {
-            mAdapter = new MyHomeAdapter(mContext, picList, channelList, girlList, normalLis);
+            mAdapter = new MyHomeAdapter(mContext, picList, channelList, channelList2, girlList, fliperItems, normalLis);
         }
         mAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override

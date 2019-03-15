@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 import com.bumptech.glide.Glide;
 import com.youth.banner.Banner;
@@ -28,26 +29,33 @@ public class MyHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private Context context;
     private List<String> picList;
     private List<Map<String, Object>> channelList;
+    private List<Map<String, Object>> channelList2;
 //    private List<Integer> girlList;
     private List<MyItem> girlList;
     private List<String> normalList;
+    private List<FliperItem> fliperItems;
     private OnItemClickListener onItemClickListener;
 
     private final int BANNER_VIEW_TYPE = 0;//轮播图
     private final int CHANNEL_VIEW_TYPE = 1;//频道
-    private final int GIRL_VIEW_TYPE = 2;//美女
-    private final int NORMAL_VIEW_TYPE = 3;//正常布局
+    private final int SECOND_CHANNEL_VIEW_TYPE = 2;//频道
+    private final int GIRL_VIEW_TYPE = 3;//美女
+    private final int NORMAL_VIEW_TYPE = 4;//正常布局
 
     public MyHomeAdapter(Context context,
                          List<String> picList,
                          List<Map<String, Object>> channelList,
+                         List<Map<String, Object>> channelList2,
                          List<MyItem> girlList,
+                         List<FliperItem> fliperItems,
                          List<String> normalList) {
         this.context = context;
         this.picList = picList;
         this.channelList = channelList;
+        this.channelList2 = channelList2;
         this.girlList = girlList;
         this.normalList = normalList;
+        this.fliperItems = fliperItems;
     }
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
@@ -109,6 +117,17 @@ public class MyHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         }
     }
 
+    public class SecondChannelHolder extends RecyclerView.ViewHolder {
+        private RecyclerView channelRvView2;
+        private ViewFlipper viewFlipper;
+
+        public SecondChannelHolder(@NonNull View itemView) {
+            super(itemView);
+            channelRvView2 = itemView.findViewById(R.id.channel_rv_view2);
+            viewFlipper = itemView.findViewById(R.id.viewflipper);
+        }
+    }
+
     /**
      * 美女的ViewHolder
      */
@@ -151,6 +170,9 @@ public class MyHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             case CHANNEL_VIEW_TYPE:
                 viewHolder = new ChannelHolder(inflate(parent, R.layout.item_channel));
                 break;
+            case SECOND_CHANNEL_VIEW_TYPE:
+                viewHolder = new SecondChannelHolder(inflate(parent, R.layout.item_second_channel));
+                break;
             case GIRL_VIEW_TYPE:
                 viewHolder = new GirlHolder(inflate(parent, R.layout.item_girl));
                 break;
@@ -173,6 +195,37 @@ public class MyHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             ChannelHolder channelHolder = (ChannelHolder) viewHolder;
             //设置频道
             setChannel(channelHolder);
+        } else if (viewHolder instanceof SecondChannelHolder) {
+            SecondChannelHolder secondChannelHolder = (SecondChannelHolder) viewHolder;
+
+            RecyclerView recyclerView = secondChannelHolder.channelRvView2;
+            recyclerView.setHasFixedSize(true);
+            GridLayoutManager mLayoutManager = new GridLayoutManager(context, 5);
+            recyclerView.setLayoutManager(mLayoutManager);
+            RecyclerViewCornerRadius radiusItemDecoration = new RecyclerViewCornerRadius(recyclerView);
+            radiusItemDecoration.setCornerRadius(AppUtils.dpTopx(context, 5));
+            radiusItemDecoration.setItemOffsets(8, 5);
+            recyclerView.addItemDecoration(radiusItemDecoration);
+            MyChannelViewAdapter adapter = new MyChannelViewAdapter(context, channelList2);
+            recyclerView.setAdapter(adapter);
+
+            ViewFlipper flipper = secondChannelHolder.viewFlipper;
+
+            for (int i = 0; i < fliperItems.size(); i++) {
+                View view = LayoutInflater.from(context).inflate(R.layout.item_view_flipper, flipper, false);
+                TextView type = view.findViewById(R.id.item_type);
+                TextView content = view.findViewById(R.id.item_content);
+
+                type.setText(fliperItems.get(i).getType());
+                content.setText(fliperItems.get(i).getContent());
+                view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                    }
+                });
+                flipper.addView(view);
+            }
+            flipper.startFlipping();
         } else if (viewHolder instanceof GirlHolder) {//美女
 //            GirlHolder girlHolder = (GirlHolder) viewHolder;
 //            GridViewAdapter adapter = new GridViewAdapter(context, girlList);
@@ -287,7 +340,9 @@ public class MyHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             return BANNER_VIEW_TYPE;
         } else if (position == 1) {//第一个是频道布局
             return CHANNEL_VIEW_TYPE;
-        } else if (position == 2) {//第2个位置是美女布局
+        } else if (position == 2) {
+            return SECOND_CHANNEL_VIEW_TYPE;
+        } else if (position == 3) {//第2个位置是美女布局
             return GIRL_VIEW_TYPE;
         } else {//其他位置返回正常的布局
             return NORMAL_VIEW_TYPE;
@@ -310,6 +365,6 @@ public class MyHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 //            count += 1;
 //        }
 //        return count;
-        return 4;
+        return 5;
     }
 }

@@ -72,6 +72,91 @@ public class MockDataUtils {
         return channelList;
     }
 
+    public static List<Map<String, Object>> getChannelData2() {
+        List<Map<String, Object>> channelList = new ArrayList<Map<String, Object>>();
+        String titles[] = {
+                "京东超市",
+                "海囤全球",
+                "京东服饰",
+                "京东生鲜",
+                "京东到家",
+                "充值缴费",
+                "9.9元拼",
+                "领券",
+                "赚钱",
+                "PLUS会员",
+                "拍拍回收",
+                "内衣馆",
+                "唯品会",
+                "爱车生活",
+                "沃尔玛",
+                "个护清洁",
+                "珠宝首饰",
+                "钟表馆",
+                "排行榜",
+                "全部"
+        };
+
+        int pics[] = {
+                R.mipmap.channel1,
+                R.mipmap.channel2,
+                R.mipmap.channel3,
+                R.mipmap.channel4,
+                R.mipmap.channel5,
+                R.mipmap.channel6,
+                R.mipmap.channel7,
+                R.mipmap.channel8,
+                R.mipmap.channel9,
+                R.mipmap.channel10,
+                R.mipmap.channel11,
+                R.mipmap.channel12,
+                R.mipmap.channel13,
+                R.mipmap.channel14,
+                R.mipmap.channel15,
+                R.mipmap.channel16,
+                R.mipmap.channel17,
+                R.mipmap.channel18,
+                R.mipmap.channel19,
+                R.mipmap.channel20
+        };
+
+        for (int i=0; i<titles.length/2; i++) {
+            Map<String, Object> map = new HashMap<>();
+            map.put("pic", pics[i]);
+            map.put("title", titles[i]);
+            channelList.add(map);
+        }
+
+        return channelList;
+    }
+
+    public static List<FliperItem> getFliperItemData() {
+        String types[] = {
+                "推荐",
+                "热门",
+                "HOT",
+                "热门"
+        };
+
+        String contents[] = {
+                "小米9透明版, 12G内存+256G存储配置, 让你轻松体验流畅质感",
+                "作为国货老品牌回力, 在这个春天又火了, 你还在犹豫什么",
+                "256GB+麒麟970, 昔日旗舰已经无人问津, 手机市场再次大洗牌",
+                "4款精致的钢笔, 献给轻奢文字控, 另你不得不入手一试"
+        };
+
+        List<FliperItem> itemList = new ArrayList<FliperItem>();
+        for (int i=0; i<types.length; i++) {
+            FliperItem item = new FliperItem();
+            item.setType(types[i]);
+            item.setContent(contents[i]);
+            itemList.add(item);
+        }
+
+
+        return itemList;
+    }
+
     public static List<MyItem> getGirlData() {
         String msgs[] = {
                 "迪巧钙维生素D颗粒1g/袋×15袋",
@@ -118,9 +203,8 @@ public class MockDataUtils {
                 "1100.90",
         };
 
-        //轮播图链接
         List<MyItem> itemList = new ArrayList<MyItem>();
-        for (int i=0; i<6; i++) {
+        for (int i=0; i<msgs.length; i++) {
             MyItem item = new MyItem();
             item.setGoods_pic(pics[i]);
             item.setGoods_flag(flags[i]);
@@ -129,7 +213,6 @@ public class MockDataUtils {
             item.setGoods_old_price(oldprices[i]);
             itemList.add(item);
         }
-
 
         return itemList;
     }
